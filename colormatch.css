@@ -112,18 +112,22 @@ main {
         #mainMenu .controls button#startBtn {
             cursor: pointer;
             margin-top: 8px;
-            font-weight: bold;
+            font-weight: 600;
             background: var(--btn-gradient);
             color: #fff;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            border: none;
+            font-size: 15px;
+            padding: 10px 14px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px; /* uguale al box */
+            transition: all 0.25s ease;
+            box-sizing: border-box;
         }
 
             #mainMenu .controls button#startBtn:hover {
-                transform: scale(1.05);
-                box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+                transform: scale(1.03);
+                box-shadow: 0 3px 10px rgba(255,255,255,0.2);
             }
+
 
 /* Mostra i nomi dei giocatori quando #players = 2 via JS */
 #playerNamesLabel {
