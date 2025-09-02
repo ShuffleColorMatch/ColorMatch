@@ -11,13 +11,24 @@
         <!-- === MENU PRINCIPALE === -->
         <section id="mainMenu">
             <h1>Color Match</h1>
+            <p class="intro">
+                In Color Match il tuo obiettivo è ricostruire la griglia di colori corretta.
+                A seconda della modalità, dovrai spostare le tessere già presenti (Shuffle)
+                oppure trascinare quelle dalla palette per posizionarle al posto giusto (Riempimento).
+                Vinci completando la griglia nel minor tempo possibile!
+            </p>
+
             <div class="controls">
                 <label>
                     Modalità:
                     <select id="mode">
                         <option value="shuffle">Shuffle</option>
-                        <option value="fill">Riempimento</option>
+                        <option value="fill">Fill</option>
                     </select>
+                    <small>
+                        <b>Shuffle:</b> Scambia le tessere, mettile al posto giusto.<br>
+                        <b>Fill:</b> Inserisci le tessere dalla palette.
+                    </small>
                 </label>
 
                 <label>
@@ -26,6 +37,7 @@
                         <option value="square">Quadrato</option>
                         <option value="pyramid">Piramide</option>
                     </select>
+                    <small>Scegli la forma della griglia di gioco.</small>
                 </label>
 
                 <label>
@@ -35,24 +47,28 @@
                         <option value="medium">Medio</option>
                         <option value="large">Grande</option>
                     </select>
+                    <small>Determina quanto grande sarà la griglia.</small>
                 </label>
 
-                <label>
+                <label id="playersLabel">
                     Giocatori:
                     <select id="players">
                         <option value="1">1</option>
                         <option value="2">2</option>
                     </select>
+                    <small>Puoi giocare da solo o sfidare un amico a turni.</small>
                 </label>
 
                 <label id="playerNamesLabel" style="display:none;">
                     Giocatore 1: <input type="text" id="player1" />
                     Giocatore 2: <input type="text" id="player2" />
+                    <small>Inserisci i nomi dei giocatori.</small>
                 </label>
 
                 <button id="startBtn" type="button">Start</button>
             </div>
         </section>
+
 
         <!-- === AREA DI GIOCO === -->
         <section id="gameArea" style="display:none;">
