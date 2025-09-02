@@ -41,7 +41,7 @@
     const playerNamesLabel = document.getElementById('playerNamesLabel');
     const turnDiv = document.querySelector('#turn').parentElement; // il div che contiene "Turno"
     const modeSelect = document.getElementById('mode');
-
+    const playersLabel = document.getElementById('playersLabel');
     function updateTurnVisibility() {
         if (playersSelect.value === '2') {
             turnDiv.style.display = 'block';  // mostra il div
@@ -72,14 +72,14 @@
 
     function updateModeVisibility() {
         if (modeSelect.value === 'fill') {
-            playersSel.style.display = 'flex'; // mostra la select dei giocatori
+            playersLabel.style.display = 'flex'; // mostra la select dei giocatori
             if (playersSel.value === "2") {
                 playerNamesLabel.style.display = "flex"; // mostra input nomi
             } else {
                 playerNamesLabel.style.display = "none"; // nascondi input nomi
             }
         } else {
-            playersSel.style.display = "none";        // nascondi select giocatori
+            playersLabel.style.display = "none";        // nascondi select giocatori
             playerNamesLabel.style.display = "none";  // nascondi input nomi
         }
     }
