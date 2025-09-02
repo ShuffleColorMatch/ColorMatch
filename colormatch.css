@@ -1,0 +1,354 @@
+﻿:root {
+    --bg: #0f1720;
+    --card: #0b1220;
+    --accent: #22c1c3;
+    --text: #e6eef6;
+    --cell-size: clamp(36px, 6.5vw, 64px);
+    --gap: clamp(6px, 1.5vw, 12px);
+    --ui-pad: clamp(8px, 3vw, 16px);
+    --menu-gradient: linear-gradient(45deg, #f9f871,#42e695, #7873f5, #ff6ec4 );
+    --btn-gradient: linear-gradient(90deg, #f953c6, #b91d73);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body, #app {
+    height: 100%;
+    margin: 0;
+    font-family: Inter,system-ui,Segoe UI,Arial;
+    background: linear-gradient(180deg,var(--bg),#07101a);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+    width: 96vw;
+    max-width: 96vw;
+    margin: 0 auto;
+    padding: var(--ui-pad);
+    box-sizing: border-box;
+}
+
+/* ================= MENU ================= */
+#mainMenu {
+    width: 96vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    background: var(--menu-gradient);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    overflow: hidden; /* evita che elementi escano fuori */
+}
+
+    #mainMenu h1 {
+        font-size: 32px;
+        background: linear-gradient(90deg, #ff4d4d, #ffec61, #00f0ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    #mainMenu .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        max-width: 400px;
+        background: rgba(15,17,32,0.8);
+        padding: 16px;
+        border-radius: 12px;
+        align-items: stretch;
+        box-sizing: border-box;
+    }
+
+        #mainMenu .controls label {
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            color: var(--text);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        #mainMenu .controls select,
+        #mainMenu .controls input {
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            font-weight: bold;
+            font-size: 14px;
+            -webkit-appearance: none; /* elimina stile default del browser */
+            -moz-appearance: none;
+            appearance: none;
+            text-overflow: ellipsis;
+        }
+
+            /* Forza colore delle options nei select */
+            #mainMenu .controls select option {
+                background: #6a11cb;
+                color: #fff;
+            }
+
+        /* Input giocatori */
+        #mainMenu .controls input {
+            background: linear-gradient(135deg, #42e695, #3bb2b8);
+            color: #000;
+        }
+
+        /* Pulsante start */
+        #mainMenu .controls button#startBtn {
+            cursor: pointer;
+            margin-top: 8px;
+            font-weight: bold;
+            background: var(--btn-gradient);
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+            #mainMenu .controls button#startBtn:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+            }
+
+/* Mostra i nomi dei giocatori quando #players = 2 via JS */
+#playerNamesLabel {
+    display: none; /* default */
+    flex-direction: column;
+    gap: 8px;
+}
+/* ================= GIOCO ================= */
+#gameArea {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.game-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+    .game-controls button {
+        flex: 0 0 auto;
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: none;
+        background: linear-gradient(45deg, #f54ea2, #ff7676);
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+        .game-controls button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(255,255,255,0.4);
+        }
+
+.game-area {
+    display: flex;
+    gap: 12px;
+}
+
+#leftPanel {
+    flex: 1;
+    justify-content: center;
+}
+
+/* ================= GRIGLIA ================= */
+#gridWrap {
+    background: var(--card);
+    padding: 6px;
+    border-radius: 10px;
+    min-height: 220px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 55px));
+    gap: 10px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.cell {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 6px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.35) inset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: bold;
+    color: rgb(200,200,200);
+    cursor: pointer;
+    user-select: none;
+    background: rgb(20,20,20);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+    .cell.locked {
+        outline: 3px solid gray;
+        cursor: default;
+    }
+
+    .cell.correct {
+        box-shadow: 0 0 0 3px rgba(255,255,255,0.25) inset;
+    }
+
+    .cell:active {
+        transform: scale(.98);
+    }
+
+    .cell.selected {
+        transform: scale(1.04);
+        box-shadow: 0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    .cell:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(255,255,255,0.2);
+    }
+
+.pts {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    font-size: 20px;
+    color: rgb(150,150,150);
+    line-height: 1;
+    display: none;
+    pointer-events: none;
+    text-shadow: 0 0 4px rgba(0,0,0,0.7);
+}
+
+/* ================= PALETTE ================= */
+.palette {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, var(--cell-size)));
+    gap: 6px;
+    background: var(--card);
+    padding: 10px;
+    border-radius: 10px;
+    justify-items: center;
+    align-items: center;
+}
+
+    .palette .peg {
+        width: var(--cell-size);
+        aspect-ratio: 1 / 1;
+        border-radius: 8px;
+        box-shadow: 0 1px 0 rgba(0,0,0,0.4) inset;
+        cursor: grab;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .palette .peg.picked {
+            outline: 3px solid rgba(255,255,255,0.12);
+            transform: translateY(-4px);
+        }
+
+        .palette .peg:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+#paletteWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* rimuove gap tra h3 e palette */
+}
+
+    #paletteWrap h3 {
+        margin: 0;
+        padding: 0;
+    }
+
+/* ================= INFO ================= */
+.info {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+    .info div {
+        background: linear-gradient(90deg, #42e695, #3bb2b8);
+        padding: 4px 8px;
+        border-radius: 6px;
+        color: #000;
+        font-weight: bold;
+        text-align: center;
+    }
+
+#message {
+    margin-top: 8px;
+    min-height: 18px;
+}
+
+small {
+    opacity: .9;
+    font-size: 12px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:700px) {
+    #mainMenu {
+        padding: 16px;
+    }
+
+        #mainMenu h1 {
+            font-size: 28px;
+        }
+
+        #mainMenu .controls {
+            max-width: 100%;
+        }
+
+    .game-area {
+        flex-direction: column;
+    }
+
+    #paletteWrap {
+        width: 100%;
+    }
+
+    .palette {
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+        gap: 4px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(36px, 1fr));
+        gap: 3px;
+    }
+
+    :root {
+        --cell-size: clamp(42px, 12vw, 56px);
+        --gap: 8px;
+    }
+}

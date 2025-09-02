@@ -1,0 +1,89 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Color Match</title>
+    <link rel="stylesheet" href="colormatch.css" />
+</head>
+<body>
+    <main id="app">
+        <!-- === MENU PRINCIPALE === -->
+        <section id="mainMenu">
+            <h1>Color Match</h1>
+            <div class="controls">
+                <label>
+                    Modalità:
+                    <select id="mode">
+                        <option value="shuffle">Shuffle</option>
+                        <option value="fill">Riempimento</option>
+                    </select>
+                </label>
+
+                <label>
+                    Forma:
+                    <select id="shape">
+                        <option value="square">Quadrato</option>
+                        <option value="pyramid">Piramide</option>
+                    </select>
+                </label>
+
+                <label>
+                    Dimensione:
+                    <select id="size">
+                        <option value="small">Piccolo</option>
+                        <option value="medium">Medio</option>
+                        <option value="large">Grande</option>
+                    </select>
+                </label>
+
+                <label>
+                    Giocatori:
+                    <select id="players">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </label>
+
+                <label id="playerNamesLabel" style="display:none;">
+                    Giocatore 1: <input type="text" id="player1" />
+                    Giocatore 2: <input type="text" id="player2" />
+                </label>
+
+                <button id="startBtn" type="button">Start</button>
+            </div>
+        </section>
+
+        <!-- === AREA DI GIOCO === -->
+        <section id="gameArea" style="display:none;">
+            <div class="game-controls">
+                <button id="backToMenu">Menu</button>
+                <button id="showRanking">Classifica</button>
+                <button id="restartGame">Nuova Partita</button>
+            </div>
+
+            <div id="leftPanel">
+                <div class="info">
+                    <div>Timer: <span id="timer">00:00</span></div>
+                    <div>Turno: <span id="turn">—</span></div>
+                    <div>Punteggio: <span id="score">0 - 0</span></div>
+                </div>
+
+                <div id="gridWrap">
+                    <div id="grid" class="grid"></div>
+                </div>
+            </div>
+
+            <aside id="paletteWrap">
+                <div id="palette" class="palette"></div>
+            </aside>
+
+            <footer>
+                <div id="message"></div>
+            </footer>
+        </section>
+    </main>
+
+    <script src="colormatch.js"></script>
+</body>
+</html>
