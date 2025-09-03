@@ -15,7 +15,7 @@
 }
 
 html, body, #app {
-    height: 100%;
+    height: 100dvh;
     margin: 0;
     font-family: Inter,system-ui,Segoe UI,Arial;
     background: linear-gradient(180deg,var(--bg),#07101a);
@@ -25,6 +25,7 @@ html, body, #app {
     justify-content: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-y: auto;
 }
 
 main {
