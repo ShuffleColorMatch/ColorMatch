@@ -3,8 +3,8 @@
     --card: #0b1220;
     --accent: #22c1c3;
     --text: #e6eef6;
-    --cell-size: clamp(36px, 6.5vw, 64px);
-    --gap: clamp(6px, 1.5vw, 12px);
+    --cell-size: clamp(36px, 12vw, 64px);
+    --gap: clamp(6px, 3vw, 12px);
     --ui-pad: clamp(8px, 3vw, 16px);
     --menu-gradient: linear-gradient(45deg, #f9f871,#42e695, #7873f5, #ff6ec4 );
     --btn-gradient: linear-gradient(90deg, #f953c6, #b91d73);
@@ -37,7 +37,7 @@ main {
 
 /* ================= MENU ================= */
 #mainMenu {
-    width: 96vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,16 +46,16 @@ main {
     border-radius: 16px;
     padding: 24px;
     box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-    overflow: hidden; /* evita che elementi escano fuori */
+    overflow: hidden;
 }
 
     #mainMenu h1 {
-        font-size: 32px;
+        font-size: 40px;
         background: linear-gradient(90deg, #ff4d4d, #ffec61, #00f0ff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-align: center;
-        margin-bottom: 24px;
+        margin: 0 0 0 0;
     }
 
     #mainMenu .controls {
@@ -77,8 +77,6 @@ main {
             flex-direction: column;
             gap: 4px;
             color: var(--text);
-            text-overflow: ellipsis;
-            white-space: nowrap;
         }
 
         #mainMenu .controls select,
@@ -90,10 +88,9 @@ main {
             color: #fff;
             font-weight: bold;
             font-size: 14px;
-            -webkit-appearance: none; /* elimina stile default del browser */
+            -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            text-overflow: ellipsis;
         }
 
             /* Forza colore delle options nei select */
@@ -102,13 +99,11 @@ main {
                 color: #fff;
             }
 
-        /* Input giocatori */
         #mainMenu .controls input {
             background: linear-gradient(135deg, #42e695, #3bb2b8);
             color: #000;
         }
 
-        /* Pulsante start */
         #mainMenu .controls button#startBtn {
             cursor: pointer;
             margin-top: 8px;
@@ -118,9 +113,8 @@ main {
             font-size: 15px;
             padding: 10px 14px;
             border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 12px; /* uguale al box */
+            border-radius: 12px;
             transition: all 0.25s ease;
-            box-sizing: border-box;
         }
 
             #mainMenu .controls button#startBtn:hover {
@@ -131,37 +125,33 @@ main {
         #mainMenu .controls small {
             font-size: 12px;
             color: rgba(255,255,255,0.7);
-            line-height: 1.4;
         }
 
     #mainMenu .intro {
         font-size: 14px;
         color: var(--text);
-        margin-bottom: 12px;
-        line-height: 1.5;
+        line-height: 1.3;
+        margin: 0 0 12px 0;
     }
 
-
-/* Mostra i nomi dei giocatori quando #players = 2 via JS */
-#playerNamesLabel {
-    display: none; /* default */
-    flex-direction: column;
-    gap: 8px;
-}
 /* ================= GIOCO ================= */
 #gameArea {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    justify-content: flex-start;
+    align-items: center;
     width: 100%;
+    height: 100vh;
+    padding: 8px;
 }
 
+/* top: pulsanti + info */
 .game-controls {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 8px;
+    margin-top: 8px;
 }
 
     .game-controls button {
@@ -182,52 +172,73 @@ main {
             box-shadow: 0 4px 12px rgba(255,255,255,0.4);
         }
 
-.game-area {
+/* left panel con info e griglia */
+#leftPanel {
     display: flex;
-    gap: 12px;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    flex: 1 1 auto;
+    margin-top: 8px;
 }
 
-#leftPanel {
-    flex: 1;
+/* info box */
+.info {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
-/* ================= GRIGLIA ================= */
+    .info div {
+        background: linear-gradient(90deg, #42e695, #3bb2b8);
+        padding: 4px 8px;
+        border-radius: 6px;
+        color: #000;
+        font-weight: bold;
+        text-align: center;
+    }
+
+small {
+    opacity: .9;
+    font-size: 12px;
+}
+
+/* griglia centrale */
 #gridWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 95vw;
+    max-height: 50vh;
+    height: auto;
     background: var(--card);
     padding: 6px;
     border-radius: 10px;
-    min-height: 220px;
+    margin-top: 3rem; /* spazio sopra la griglia */
 }
 
-.grid {
+#grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40px, 55px));
-    gap: 10px;
     width: 100%;
-    margin: 0 auto;
+    height: 100%;
+    aspect-ratio: 1 / 1; /* griglia quadrata */
+    gap: 6px; /* distanza tra le celle */
+    border-radius: 8px;
 }
 
 .cell {
-    width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: 6px;
-    box-shadow: 0 2px 0 rgba(0,0,0,0.35) inset;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: bold;
-    color: rgb(200,200,200);
-    cursor: pointer;
-    user-select: none;
-    background: rgb(20,20,20);
+    width: 100%;
+    height: auto;
     position: relative;
-    transition: all 0.3s ease;
+    border-radius: 8px;
 }
 
     .cell.locked {
-        outline: 3px solid gray;
+        outline: 2px solid gray;
         cursor: default;
     }
 
@@ -264,15 +275,23 @@ main {
 }
 
 /* ================= PALETTE ================= */
+#paletteWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    width: 100%;
+}
+
 .palette {
     display: grid;
-    grid-template-columns: repeat(7, minmax(0, var(--cell-size)));
+    grid-template-columns: repeat(7, minmax(var(--cell-size), 1fr));
     gap: 6px;
     background: var(--card);
     padding: 10px;
     border-radius: 10px;
     justify-items: center;
-    align-items: center;
 }
 
     .palette .peg {
@@ -294,78 +313,37 @@ main {
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-#paletteWrap {
-    display: flex;
-    flex-direction: column;
-    gap: 0; /* rimuove gap tra h3 e palette */
-}
-
-    #paletteWrap h3 {
-        margin: 0;
-        padding: 0;
-    }
-
-/* ================= INFO ================= */
-.info {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-}
-
-    .info div {
-        background: linear-gradient(90deg, #42e695, #3bb2b8);
-        padding: 4px 8px;
-        border-radius: 6px;
-        color: #000;
-        font-weight: bold;
-        text-align: center;
-    }
-
 #message {
-    margin-top: 8px;
     min-height: 18px;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 4px;
+    margin-bottom: 8px;
 }
 
-small {
-    opacity: .9;
-    font-size: 12px;
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width:700px) {
-    #mainMenu {
+/* ================= DESKTOP (opzionale) ================= */
+@media (min-width: 900px) {
+    #gameArea {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
         padding: 16px;
     }
 
-        #mainMenu h1 {
-            font-size: 28px;
-        }
-
-        #mainMenu .controls {
-            max-width: 100%;
-        }
-
-    .game-area {
-        flex-direction: column;
+    #leftPanel {
+        flex: 1 1 auto;
+        align-items: flex-start;
     }
 
     #paletteWrap {
-        width: 100%;
+        position: fixed;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
     }
 
     .palette {
-        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-        gap: 4px;
-    }
-
-    .grid {
-        grid-template-columns: repeat(auto-fit, minmax(36px, 1fr));
-        gap: 3px;
-    }
-
-    :root {
-        --cell-size: clamp(42px, 12vw, 56px);
-        --gap: 8px;
+        grid-template-columns: repeat(7, minmax(0, var(--cell-size)));
     }
 }
