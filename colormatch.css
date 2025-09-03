@@ -368,28 +368,54 @@ small {
 }
 
 /* ================= DESKTOP (opzionale) ================= */
-@media (min-width: 600px) {
+@media (min-width: 650px) {
   :root {
-    --cell-size: 60px;
+    --cell-size: 55px;
+    --palette-size: 50px;
   }
 
   #gameArea {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     padding: 16px;
   }
+  /* Pulsanti in alto centrati e in linea */
+  .game-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 16px;
+    margin: 16px 0;
+  }
 
-  #leftPanel {
-    flex: 1 1 auto;
-    align-items: flex-start;
+  /* Info centrati e in linea */
+  .info {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+
+  /* Griglia + palette sempre in colonna al centro */
+  #playArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: auto;
+    max-width: 90vw;
+  }
+
+  #gridWrap {
+    max-height: none;
   }
 
   #paletteWrap {
-    position: fixed;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-top: 0;
+    position: static;
+    transform: none;
     width: auto;
   }
 
