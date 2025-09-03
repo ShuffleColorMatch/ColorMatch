@@ -470,7 +470,7 @@
         const pts = parseInt(badge?.textContent) || 0;
 
         if (colObj.css === cell.target.css) {
-            // tile corretta
+            // --- Tile corretta ---
             cell.cur = cell.target;
             cell.locked = true;
             cell.el.style.background = cell.target.css;
@@ -478,34 +478,34 @@
             if (badge) badge.style.display = 'none';
             if (pegEl) pegEl.remove();
 
-            // somma punti
             state.scores[state.currentPlayer] += pts;
-
-            // aggiorna badge
             updatePoints();
             recomputePointsAndUI();
 
-            // controllo fine partita
             if (state.cells.every(c => c.locked)) {
                 stopTimer();
                 showFinalScores();
                 return;
             }
+        } else {
+            // --- Tile sbagliata ---
+            if (state.players === 1) {
+                addPenaltySeconds(5);
+            }
 
-            // cambio turno se 2 giocatori
-            if (state.players === 2) switchTurn();
+            // effetto "flash rosso" sulla cella
+            cell.el.classList.add('wrong');
+            setTimeout(() => cell.el.classList.remove('wrong'), 400);
+
+            // effetto "shake" sulla pedina della palette
+            if (pegEl) {
+                pegEl.classList.add('wrong');
+                pegEl.classList.remove('picked'); // disattiva la selezione
+                setTimeout(() => pegEl.classList.remove('wrong'), 400);
+            }
         }
-    }
 
-    // gestione turni 2-player
-    function switchTurn() {
-        if (state.players !== 2) return;
-        stopTimer();
-        state.currentPlayer = 1 - state.currentPlayer;
-        currentPlayerIndex = state.currentPlayer; // sincronizza anche l’indice locale
-        startTimer();
-        updateTurnDisplay(); // aggiorna il div con il nome corretto
-        message(`Turno di ${players[currentPlayerIndex]}`);
+        if (state.players === 2) switchTurn();
     }
 
     // visualizza punteggi finali
