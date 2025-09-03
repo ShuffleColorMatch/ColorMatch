@@ -218,7 +218,7 @@ small {
     background: var(--card);
     padding: 6px;
     border-radius: 10px;
-    margin-top: 3rem; /* spazio sopra la griglia */
+    margin-top: 1rem; /* spazio sopra la griglia */
 }
 
 #grid {
