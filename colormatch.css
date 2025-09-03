@@ -152,7 +152,7 @@ main {
     flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 8px;
-    margin-top: 8px;
+    margin-top: 55px;
 }
 
     .game-controls button {
@@ -319,7 +319,7 @@ small {
     text-align: center;
     font-size: 1.5rem;
     margin-top: 4px;
-    margin-bottom: 8px;
+    margin-bottom: 40px;
 }
 
 /* ================= DESKTOP (opzionale) ================= */
